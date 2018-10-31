@@ -19,7 +19,6 @@
 *.prof
 *.html
 *.db
-*.txt
 *.swp
 *.ipynb
 *.zip
