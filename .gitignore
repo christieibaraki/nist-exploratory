@@ -1,0 +1,28 @@
+.DS_Store
+
+# compiled python files
+*.pyc
+
+# .idea folder from IDE
+/.idea
+
+
+/htmlcov/
+*.coverage
+*.gz
+*.json
+
+*.csv
+*.pickle
+*.xls
+*.xlsx
+*.prof
+*.html
+*.db
+*.txt
+*.swp
+*.ipynb
+*.zip
+
+output/
+
