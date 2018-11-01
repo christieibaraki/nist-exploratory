@@ -1,2 +1,2 @@
-# nist-exploratory
-EDA on vulnerability data from https://nvd.nist.gov/vuln/data-feeds
+# CDM Data Model
+Creation of and EDA on vulnerability, scan, and user data.
