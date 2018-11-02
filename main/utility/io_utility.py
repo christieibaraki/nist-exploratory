@@ -1,5 +1,6 @@
 import json
 import os
+import csv
 from os import path
 from main import MAIN_ROOT_DIR, DEMO_ROOT_DIR, TEST_ROOT_DIR, ROOT_DIR
 
@@ -13,6 +14,12 @@ def read_dictionary_from_file(filepath):
 def write_dictionary_to_file(dictionary, filepath):
     with open(filepath, "w") as f:
         f.write(json.dumps(dictionary, indent=4))
+
+
+def write_csv(lines, file_name):
+    with open(file_name, 'w') as writeFile:
+        writer = csv.writer(writeFile)
+        writer.writerows(lines)
 
 
 def standardize_path(path_string):
