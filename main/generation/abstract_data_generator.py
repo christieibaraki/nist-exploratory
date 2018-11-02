@@ -9,7 +9,7 @@ class AbstractDataGenerator:
 
     def _populate_data_header(self, field_names):
         if type(field_names) == list:
-            data = field_names
+            data = [field_names]
             return data
         else:
             raise ValueError("field_names must be list")
