@@ -2,13 +2,14 @@
 import pandas as pd
 import re
 from datetime import date
+import os
 from scipy import stats
 
 
 # import and clean data
-directory = 'C:/Users/matthew.swahn/Desktop/CDM-TD/Data/'
+filepath = os.path.abspath("../nist-exploratory/CDM-Data-Model/main/resources/CreatedData.xlsx")
 
-scanFile = pd.read_excel(directory + "CreatedData.xlsx",
+scanFile = pd.read_excel(filepath,
                          sheet_name = "Scan",
                         na_values = ["", " ", "N/A", "nan"])
 # first look
