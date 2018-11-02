@@ -13,6 +13,6 @@ class AbstractDataGenerator:
         pass
 
     @abc.abstractmethod
-    def generate_data(self):
+    def generate_data(self, num_records):
         pass
 
