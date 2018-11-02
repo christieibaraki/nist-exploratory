@@ -16,7 +16,13 @@ def write_dictionary_to_file(dictionary, filepath):
         f.write(json.dumps(dictionary, indent=4))
 
 
-def write_csv(lines, file_name):
+def read_csv_to_list(path_string):
+    with open(path_string, 'r') as f:
+        reader = csv.reader(f)
+        return list(reader)
+
+
+def write_list_to_csv(lines, file_name):
     with open(file_name, 'w') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(lines)
