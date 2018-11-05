@@ -7,7 +7,7 @@ from scipy import stats
 
 
 # import and clean data
-filepath = os.path.abspath("../nist-exploratory/CDM-Data-Model/main/resources/CreatedData.xlsx")
+filepath = os.path.abspath("../CDM-Data-Model/main/resources/CreatedData.xlsx")
 
 scanFile = pd.read_excel(filepath,
                          sheet_name = "Scan",
