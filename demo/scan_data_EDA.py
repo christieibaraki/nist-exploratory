@@ -12,6 +12,7 @@ filepath = os.path.abspath("../CDM-Data-Model/main/resources/CreatedData.xlsx")
 scanFile = pd.read_excel(filepath,
                          sheet_name = "Scan",
                         na_values = ["", " ", "N/A", "nan"])
+
 # first look
 print("Head:\n",scanFile.head())
 print("# unique:\n", scanFile.nunique())
@@ -40,7 +41,6 @@ scanFile['daySinceLastObs'] = scanFile.apply(lambda x: (date.today() - x['lastOb
 
 # protocol filed has a mix of upper and lower case
 scanFile['protocol'] = scanFile.protocol.apply(lambda x: x.upper())
-print(scanFile['protocol'].value_counts())
 
 def udpSpell(string):
     '''correct misspelling of UPD to UDP'''
@@ -50,7 +50,7 @@ def udpSpell(string):
         return string
 
 
-scanFile['protocol2'] = scanFile.protocol2.apply(lambda x: udpSpell(x))
+scanFile['protocol'] = scanFile.protocol.apply(lambda x: udpSpell(x))
 print(pd.crosstab(scanFile.protocol2, scanFile.protocol))
 
 # print tables
