@@ -3,8 +3,7 @@ import pandas as pd
 import re
 from datetime import date
 import os
-from scipy import stats
-
+from main.utility.eda_utility import side_by_side_portion
 
 # import and clean data
 filepath = os.path.abspath("../CDM-Data-Model/main/resources/CreatedData.xlsx")
@@ -64,3 +63,5 @@ print(scanFile.protocol.toupper().value_counts())
 print("Severity and Protocol:\n", pd.crosstab(scanFile.severity, scanFile.protocol))
 print("Severity and Exploit:\n", pd.crosstab(scanFile.severity, scanFile.exploit))
 
+side_by_side_portion(scanFile, 'severity', 'protocol')
+side_by_side_portion(scanFile, 'severity', 'exploit')
