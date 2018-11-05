@@ -51,7 +51,7 @@ def udpSpell(string):
 
 
 scanFile['protocol'] = scanFile.protocol.apply(lambda x: udpSpell(x))
-print(pd.crosstab(scanFile.protocol2, scanFile.protocol))
+print(scanFile.protocol.value_counts())
 
 # print tables
 print("severity table:\n", scanFile.severity.value_counts())
