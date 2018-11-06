@@ -3,14 +3,15 @@ import pandas as pd
 import re
 from datetime import date
 import os
-from main.utility.eda_utility import side_by_side_portion
+from main.utility.eda_utility import *
+import seaborn as sns
 
 # import and clean data
 filepath = os.path.abspath("../CDM-Data-Model/main/resources/CreatedData.xlsx")
 
 scanFile = pd.read_excel(filepath,
                          sheet_name = "Scan",
-                        na_values = ["", " ", "N/A", "nan"])
+                        na_values = ["", " ", "N/A", "nan", "NAN"])
 
 # first look
 print("Head:\n",scanFile.head())
@@ -41,6 +42,7 @@ scanFile['daySinceLastObs'] = scanFile.apply(lambda x: (date.today() - x['lastOb
 # protocol filed has a mix of upper and lower case
 scanFile['protocol'] = scanFile.protocol.apply(lambda x: x.upper())
 
+
 def udpSpell(string):
     '''correct misspelling of UPD to UDP'''
     if string == 'UPD':
@@ -65,3 +67,9 @@ print("Severity and Exploit:\n", pd.crosstab(scanFile.severity, scanFile.exploit
 
 side_by_side_portion(scanFile, 'severity', 'protocol')
 side_by_side_portion(scanFile, 'severity', 'exploit')
+
+side_by_side_count(scanFile, 'severity', 'protocol')
+
+# explore daySinceDiscover and daySinceLastObs
+sns.catplot(x="daySinceDiscover", y="severity", data=scanFile, order = ['High', 'Medium', 'Low'])
+sns.catplot(x="daySinceLastObs", y="severity", data=scanFile, order = ['High', 'Medium', 'Low'])
