@@ -10,11 +10,11 @@ import seaborn as sns
 filepath = os.path.abspath("../CDM-Data-Model/main/resources/CreatedData.xlsx")
 
 scanFile = pd.read_excel(filepath,
-                         sheet_name = "Scan",
-                        na_values = ["", " ", "N/A", "nan", "NAN"])
+                         sheet_name="Scan",
+                         na_values=["", " ", "N/A", "nan", "NAN"])
 
 # first look
-print("Head:\n",scanFile.head())
+print("Head:\n", scanFile.head())
 print("# unique:\n", scanFile.nunique())
 print("Describe:\n", scanFile.describe())
 print("Info:\n", scanFile.info())
@@ -27,7 +27,7 @@ origCols = scanFile.columns
 
 def colNameClean(name):
     '''function to sort of clean up column names, needs improvement'''
-    camelcase = name[0].lower() + name[1:].replace(" ","")
+    camelcase = name[0].lower() + name[1:].replace(" ", "")
     return re.sub(r'\W+', '', camelcase)
 
 
@@ -36,8 +36,8 @@ scanFile.columns = [colNameClean(x) for x in origCols]
 print(scanFile.columns)
 
 # time since discovered/last obs date
-scanFile['daySinceDiscover'] = scanFile.apply(lambda x: (date.today() - x['firstDiscovered'].date()).days, axis = 1)
-scanFile['daySinceLastObs'] = scanFile.apply(lambda x: (date.today() - x['lastObservedDate'].date()).days, axis = 1)
+scanFile['daySinceDiscover'] = scanFile.apply(lambda x: (date.today() - x['firstDiscovered'].date()).days, axis=1)
+scanFile['daySinceLastObs'] = scanFile.apply(lambda x: (date.today() - x['lastObservedDate'].date()).days, axis=1)
 
 # protocol filed has a mix of upper and lower case
 scanFile['protocol'] = scanFile.protocol.apply(lambda x: x.upper())
@@ -70,6 +70,6 @@ side_by_side_portion(scanFile, 'severity', 'exploit')
 
 side_by_side_count(scanFile, 'severity', 'protocol')
 
-# explore daySinceDiscover and daySinceLastObs
-sns.catplot(x="daySinceDiscover", y="severity", data=scanFile, order = ['High', 'Medium', 'Low'])
-sns.catplot(x="daySinceLastObs", y="severity", data=scanFile, order = ['High', 'Medium', 'Low'])
+# explore relationship between day variables (daySinceDiscover & daySinceLastObs) and severity
+sns.catplot(x="daySinceDiscover", y="severity", data=scanFile, order=['High', 'Medium', 'Low'])
+sns.catplot(x="daySinceLastObs", y="severity", data=scanFile, order=['High', 'Medium', 'Low'])
